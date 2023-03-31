@@ -175,7 +175,7 @@ function comment_manga() {
 			"userId": "'$user_id'",
 			"mangaId": "'$1'",
 			"text": "'$2'",
-			"spoilers": "'${3-:false}'"
+			"spoilers": "'${3:-false}'"
 		}'
 }
 
@@ -191,7 +191,7 @@ function edit_comment() {
 		--data '{
 			"commentId": "'$1'",
 			"text": "'$2'",
-			"isSpoiler": "'${3-:false}'"
+			"isSpoiler": "'${3:-false}'"
 		}'
 }
 
@@ -220,7 +220,7 @@ function get_similar_mangas() {
 	# 1 - manga_id: (integer): <manga_id>
 	# 2 - count: (integer): <count - default: 5>
 	curl --request GET \
-		--url "$api/Manga/SimilarManga?Id=$1&count=${2-:5}" \
+		--url "$api/Manga/SimilarManga?Id=$1&count=${2:-5}" \
 		--user-agent "Dart/2.19 (dart:io)" \
 		--header "content-type: application/json"
 }
@@ -254,7 +254,7 @@ function like_comment() {
 		--data '{
 			"userId": "'$user_id'",
 			"commentId": "'$1'",
-			"isLike": "'${2-:true}'"
+			"isLike": "'${2:-true}'"
 		}'
 }
 
@@ -263,7 +263,7 @@ function search_user_by_name() {
 	# 2 - count: (integer): <count - default: 100>
 	# 3 - skip: (integer): <skip - default: 0>
 	curl --request GET \
-		--url "$api/Manga/UserByName?name=$1&count=${2-:100}&skip=${3-:0}" \
+		--url "$api/Manga/UserByName?name=$1&count=${2:-100}&skip=${3:-0}" \
 		--user-agent "Dart/2.19 (dart:io)" \
 		--header "content-type: application/json"
 }
@@ -272,7 +272,7 @@ function get_predictions() {
 	# 1 - skip: (integer): <skip - default: 0>
 	# 2 - take: (integer): <take - default: 10>
 	curl --request GET \
-		--url "$api/Manga/GetPrediction?userId=$user_id&skip=${1-:0}&take=${2-:10}" \
+		--url "$api/Manga/GetPrediction?userId=$user_id&skip=${1:-0}&take=${2:-10}" \
 		--user-agent "Dart/2.19 (dart:io)" \
 		--header "content-type: application/json"
 }
@@ -299,7 +299,7 @@ function get_last_updates() {
 	# 1 - skip: (integer): <skip - default: 0>
 	# 2 - take: (integer): <take - default: 10>
 	curl --request GET \
-		--url "$api/Manga/LatestNotifications?userId=$user_id&skip=${1-:0}&take=${2-:10}" \
+		--url "$api/Manga/LatestNotifications?userId=$user_id&skip=${1:-0}&take=${2:-10}" \
 		--user-agent "Dart/2.19 (dart:io)" \
 		--header "content-type: application/json"
 }
@@ -324,10 +324,10 @@ function edit_profile() {
 		--header "authorization: Bearer $token" \
 		--data '{
 			"userId": "'$user_id'",
-			"userName": '${1-:null}',
-			"avatarId": '${2-:0}',
-			"isHentai": '${3-:null}',
-			"isYaoi": '${4-:null}',
-			"isIncognito": '${5-:null}'
+			"userName": '${1:-null}',
+			"avatarId": '${2:-0}',
+			"isHentai": '${3:-null}',
+			"isYaoi": '${4:-null}',
+			"isIncognito": '${5:-null}'
 		}'
 }
