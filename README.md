@@ -3,6 +3,6 @@ Mobile-API for [MangaNet](https://play.google.com/store/apps/details?id=ga.gagla
 
 ## Example
 ```bash
-source manga_net.sh
+source ./manga_net.sh
 login "email" "password"
 ```
