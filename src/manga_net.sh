@@ -2,14 +2,14 @@
 
 api="https://api.aninetapi.com/api"
 user_id=0
-
+user_agent="Dart/2.19 (dart:io)"
 
 function login() {
 	# 1 - email: (string): <email>
 	# 2 - password: (string): <password>
 	response=$(curl --request POST \
 		--url "$api/Manga/Login" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--data '{
 			"email": "'$1'",
@@ -25,21 +25,21 @@ function login() {
 function get_cookies() {
 	curl --request GET \
 		--url "$api/Manga/GetCookies" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
 function get_update_link() {
 	curl --request GET \
 		--url "$api/Manga/GetUpdateLink" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
 function get_genres() {
 	curl --request GET \
 		--url "$api/Manga/Genre" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -48,7 +48,7 @@ function get_hot_mangas() {
 	# 2 - take: (integer): <take - default: 100>
 	curl --request GET \
 		--url "$api/Manga/Hot?userId=$user_id&skip=${1:-0}&take=${2:-100}" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -57,7 +57,7 @@ function get_new_mangas() {
 	# 2 - take: (integer): <take - default: 100>
 	curl --request GET \
 		--url "$api/Manga/NewManga?userId=$user_id&skip=${1:-0}&take=${2:-100}" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -75,7 +75,7 @@ function get_filtered_mangas() {
 	# 11 - skip: (integer): <skip - default: 0>
 	curl --request GET \
 		--url "$api/Manga/FilteredList?newMangas=${1:-false}&hasManga=${2:-true}&sort=${3:-members}&statuses=${4:-1}&mangaWebtoon=${5:-0}&minChapters=${6:-0}&maxChapters=${7:-0}&otherUserId=${8:-0}&userId=${9:-0}&take=${10:-100}&skip=${11:-0}" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -86,7 +86,7 @@ function register() {
 	# 3 - password: (string): <password>
 	curl --request POST \
 		--url "$api/Manga/Register" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--data '{
 			"name": "'$1'",
@@ -99,7 +99,7 @@ function get_user_info() {
 	# 1 - user_id: (integer): <user_id>
 	curl --request GET \
 		--url "$api/Manga/MangaUser?userId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -107,7 +107,7 @@ function get_user_latest_comments() {
 	# 1 - user_id: (integer): <user_id>
 	curl --request GET \
 		--url "$api/Manga/UserLatestComments?userId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -115,7 +115,7 @@ function get_user_favorites() {
 	# 1 - user_id: (integer): <user_id>
 	curl --request GET \
 		--url "$api/Manga/GetFavoriteManga?userId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -123,7 +123,7 @@ function get_user_feed() {
 	# 1 - user_id: (integer): <user_id>
 	curl --request GET \
 		--url "$api/Manga/UserFeed?userId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -131,7 +131,7 @@ function search_manga() {
 	# 1 - name: (string): <name>
 	curl --request GET \
 		--url "$api/Manga/FastSearch?name=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -139,7 +139,7 @@ function get_manga_info() {
 	# 1 - manga_id: (integer): <manga_id>
 	curl --request GET \
 		--url "$api/Manga/Description?mangaId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -150,7 +150,7 @@ function get_manga_comments() {
 	# 4 - sort: (string): <replies, likes - default: date>
 	curl --request GET \
 		--url "$api/Manga/CommentsForList?mangaId=$1&skip=${2:-0}&take=${3:-100}&sort=${4:-date}" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -158,7 +158,7 @@ function ban_user() {
 	# 1 - user_id: (integer): <user_id>
 	curl --request POST \
 		--url "$api/Manga/BanUser?userId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -168,7 +168,7 @@ function comment_manga() {
 	# 3 - is_spoiler: (boolean): <true, false default: false>
 	curl --request POST \
 		--url "$api/Manga/Comment" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--header "authorization: Bearer $token" \
 		--data '{
@@ -185,7 +185,7 @@ function edit_comment() {
 	# 3 - is_spoiler: (boolean): <true, false default: false>
 	curl --request PUT \
 		--url "$api/Manga/Comment" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--header "authorization: Bearer $token" \
 		--data '{
@@ -200,7 +200,7 @@ function delete_comment() {
 	# 1 - comment_id: (integer): <comment_id>
 	curl --request DELETE \
 		--url "$api/Manga/Comment?commentId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--header "authorization: Bearer $token"
 }
@@ -212,7 +212,7 @@ function get_manga_chapters() {
 	# 4 - manga_provider_id: (integer): <manga_provider_id - default: 1>
 	curl --request GET \
 		--url "$api/Manga/GetChapters?mangaId=$1&skip=${2:-0}&take=${3:-10000}&mangaProviderId=${4:-1}" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -221,7 +221,7 @@ function get_similar_mangas() {
 	# 2 - count: (integer): <count - default: 5>
 	curl --request GET \
 		--url "$api/Manga/SimilarManga?Id=$1&count=${2:-5}" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -229,7 +229,7 @@ function add_favorite() {
 	# 1 - manga_id: (integer): <manga_id>
 	curl --request POST \
 		--url "$api/Manga/AddFavorite?userId=$user_id&mangaId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--header "authorization: Bearer $token"
 }
@@ -238,7 +238,7 @@ function remove_favorite() {
 	# 1 - manga_id: (integer): <manga_id>
 	curl --request DELETE \
 		--url "$api/Manga/RemoveFavorite?userId=$user_id&mangaId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--header "authorization: Bearer $token"
 }
@@ -248,7 +248,7 @@ function like_comment() {
 	# 2 - is_like: (boolean): <true, false default: true>
 	curl --request POST \
 		--url "$api/Manga/CommentLike" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--header "authorization: Bearer $token" \
 		--data '{
@@ -264,7 +264,7 @@ function search_user_by_name() {
 	# 3 - skip: (integer): <skip - default: 0>
 	curl --request GET \
 		--url "$api/Manga/UserByName?name=$1&count=${2:-100}&skip=${3:-0}" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -273,7 +273,7 @@ function get_predictions() {
 	# 2 - take: (integer): <take - default: 10>
 	curl --request GET \
 		--url "$api/Manga/GetPrediction?userId=$user_id&skip=${1:-0}&take=${2:-10}" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -281,7 +281,7 @@ function send_friend_request() {
 	# 1 - user_id: (integer): <user_id>
 	curl --request POST \
 		--url "$api/Manga/MangaFriend?userId=$user_id&friendId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--header "authorization: Bearer $token"
 }
@@ -290,7 +290,7 @@ function remove_friend_request() {
 	# 1 - user_id: (integer): <user_id>
 	curl --request DELETE \
 		--url "$api/Manga/RemoveMangaFriend?userId=$user_id&friendId=$1" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--header "authorization: Bearer $token"
 }
@@ -300,14 +300,14 @@ function get_last_updates() {
 	# 2 - take: (integer): <take - default: 10>
 	curl --request GET \
 		--url "$api/Manga/LatestNotifications?userId=$user_id&skip=${1:-0}&take=${2:-10}" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
 function get_avatars() {
 	curl --request GET \
 		--url "$api/Manga/MangaAvatars" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json"
 }
 
@@ -319,7 +319,7 @@ function edit_profile() {
 	# 5 - is_incognito: (boolean): <true, false - default: null>
 	curl --request PUT \
 		--url "$api/Manga/ChangeUserInfo" \
-		--user-agent "Dart/2.19 (dart:io)" \
+		--user-agent "$user_agent" \
 		--header "content-type: application/json" \
 		--header "authorization: Bearer $token" \
 		--data '{
